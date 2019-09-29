@@ -1,0 +1,12 @@
+.span-google-icon{
+    margin-left: 10px;
+}
+/* .container>.google-and-facebook{
+    float: left;
+} */
+
+.group-social-button{
+    width: 100%;
+    display: inline-flex;
+    margin: 10px;
+}
