@@ -23,7 +23,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
-
+var server = app.listen(8000, function () {
+  var host = server.address().address
+  var port = server.address().port
+  console.log("Ung dung Node.js dang hoat dong tai dia chi: http://%s:%s", host, port)
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
