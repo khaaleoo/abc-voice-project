@@ -1,15 +1,24 @@
 var mysql = require('mysql');
 
+// var createConnection = () => {
+//     return mysql.createConnection({
+//         host: 'localhost',
+//         port: 3306,
+//         user: 'root',
+//         password: '',
+//         database: 'abc_voice'
+//     });
+// }
+
 var createConnection = () => {
     return mysql.createConnection({
-        host: 'localhost',
+        host: 'remotemysql.com',
         port: 3306,
-        user: 'root',
-        password: '',
-        database: 'abc_voice'
+        user: '6cjHslMrqJ',
+        password: 'gkYsnqNLTV',
+        database: '6cjHslMrqJ'
     });
 }
-
 module.exports = {
     load: sql => {
         return new Promise((resolve, reject) => {
