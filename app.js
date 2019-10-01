@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login/login');
+var registerRouter = require('./routes/register/register');
+
 
 var app = express();
 
@@ -28,14 +30,15 @@ var server = app.listen(8000, function () {
   var port = server.address().port
   console.log("Ung dung Node.js dang hoat dong tai dia chi: http://%s:%s", host, port)
 });
+app.use('/register', registerRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
