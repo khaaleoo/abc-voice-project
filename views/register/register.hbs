@@ -18,23 +18,23 @@
             </div>
             <div class="col-lg-5 signupform">
                 <div class="banner_img d-none d-lg-block">
-                    <form class="inputform">
+                    <form class="inputform" method="POST" action="/register">
                         <div class="mt-10">
-                            <input type="text" name="first_name" placeholder="Your email"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email'" required
-                                class="single-input">
+                            <input type="text" placeholder="Your email" name="email" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Your email'" required class="single-input">
                         </div>
                         <div class="mt-10">
-                            <input type="password" name="first_name" placeholder="Password"
+                            <input type="password" name="password" placeholder="Password"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
                                 class="single-input">
                         </div>
                         <div class="mt-10">
-                            <input type="password" name="first_name" placeholder="Confirm Password'"
+                            <input type="password" name="password_repeat" placeholder="Confirm Password'"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" required
                                 class="single-input">
                         </div>
-                        <button class="btn_2 banner_btn_2 signupBtn" placeholder="Sign up" value="Sign up">Sign
+                        <button class="btn_2 banner_btn_2 signupBtn" type="submit" placeholder="Sign up"
+                            value="Sign up">Sign
                             up</button>
 
                         <div class="group-social-button">
