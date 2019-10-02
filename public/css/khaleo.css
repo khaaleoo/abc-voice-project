@@ -1,7 +1,8 @@
 .group-social-button {
   width: 100%;
   display: inline-flex;
-  margin: 10px;
+  /* margin: 10px; */
+  /* margin-top: 10px; */
 }
 
 .main_menu .main-menu-item.main-menu-item-user ul li .nav-link {
@@ -71,4 +72,15 @@
     max-width: 100px;
     padding: 2px;
   }
+}
+
+.signUp-direct{
+    margin-top: 50px;
+    text-align: center
+}
+
+.mt-30{
+    margin-top: 30px;
+    text-align: center;
+    color: #8a8787b7;
 }
