@@ -1,12 +1,14 @@
-.span-google-icon{
-    margin-left: 10px;
-}
-/* .container>.google-and-facebook{
-    float: left;
-} */
-
 .group-social-button{
     width: 100%;
     display: inline-flex;
     margin: 10px;
+}
+
+.main_menu .main-menu-item.main-menu-item-user ul li .nav-link{
+    text-transform: none !important;
+}
+
+.main-menu-item.main-menu-item-user .dropdown-menu{
+    right: 0 !important;
+    left: unset !important;
 }
