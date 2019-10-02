@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var userModel = require("../../model/user.model");
+var userModel = require("../model/user.model");
 var bcrypt = require("bcrypt");
 /* GET register page. */
 router.get("/", function(req, res, next) {
