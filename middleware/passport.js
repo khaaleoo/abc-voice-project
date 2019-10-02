@@ -2,11 +2,10 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var bcrypt = require("bcrypt");
 var userModel = require("../model/user.model");
-var moment = require("moment");
-
+var configAuth = require("../config/auth");
 // var FacebookStrategy = require("passport-facebook").Strategy;
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
-
+var FacebookStrategy = require("passport-facebook").Strategy;
 function createEntity(profile, username) {
   var entity = new Object();
   entity.email = username;
@@ -55,66 +54,15 @@ module.exports = function(app) {
 
   passport.use(ls);
 
-  // passport.use(
-  //   new FacebookStrategy(
-  //     {
-  //       clientID: "344365016499860",
-  //       clientSecret: "40fd6a3626d8fd3e87b430ed02c108b7",
-  //       callbackURL:
-  //         "https://hkhweb.herokuapp.com/account/auth/facebook/callback"
-  //     },
-  //     function(accessToken, refreshToken, profile, done) {
-  //       var username = "fb-" + profile.id;
-  //       userModel
-  //         .single(username)
-  //         .then(rows => {
-  //           if (rows.length == 0) {
-  //             var entity = createEntity(profile, username);
-  //             userModel
-  //               .add(entity)
-  //               .then(n => {
-  //                 userModel
-  //                   .single(username)
-  //                   .then(rows1 => {
-  //                     var user = rows1[0];
-  //                     return done(null, user);
-  //                   })
-  //                   .catch(err => {
-  //                     console.log(err);
-  //                   });
-  //               })
-  //               .catch(err => {
-  //                 console.log(err);
-  //               });
-  //           } else {
-  //             userModel
-  //               .single(username)
-  //               .then(rows1 => {
-  //                 var user = rows1[0];
-  //                 return done(null, user);
-  //               })
-  //               .catch(err => {
-  //                 console.log(err);
-  //               });
-  //           }
-  //         })
-  //         .catch(err => {
-  //           console.log(err);
-  //         });
-  //     }
-  //   )
-  // );
-
   passport.use(
-    new GoogleStrategy(
+    new FacebookStrategy(
       {
-        clientID:
-          "281275017967-6ab3pftfdn0tvi1n3re5kkgr298jch4e.apps.googleusercontent.com",
-        clientSecret: "BWYUBNsgfcEhJZJ_qXB_hTrX",
-        callbackURL: "http://localhost:8000/login/auth/google/callback"
+        clientID: configAuth.facebookAuth.clientID,
+        clientSecret: configAuth.facebookAuth.clientSecret,
+        callbackURL: configAuth.facebookAuth.callbackURL
       },
       function(accessToken, refreshToken, profile, done) {
-        var username = "gg-" + profile.id;
+        var username = "fb-" + profile.id;
         userModel
           .findByEmail(username)
           .then(rows => {
@@ -141,6 +89,57 @@ module.exports = function(app) {
                 .findByEmail(username)
                 .then(rows1 => {
                   var user = rows1[0];
+                  return done(null, user);
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+    )
+  );
+
+  passport.use(
+    new GoogleStrategy(
+      {
+        clientID: configAuth.googleAuth.clientID,
+        clientSecret: configAuth.googleAuth.clientSecret,
+        callbackURL: configAuth.googleAuth.callbackURL
+      },
+      function(accessToken, refreshToken, profile, done) {
+        var username = "gg-" + profile.id;
+        userModel
+          .findByEmail(username)
+          .then(rows => {
+            if (rows.length == 0) {
+              var entity = createEntity(profile, username);
+              userModel
+                .add(entity)
+                .then(n => {
+                  userModel
+                    .findByEmail(username)
+                    .then(rows1 => {
+                      var user = rows1[0];
+                      console.log(user);
+                      return done(null, user);
+                    })
+                    .catch(err => {
+                      console.log(err);
+                    });
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            } else {
+              userModel
+                .findByEmail(username)
+                .then(rows1 => {
+                  var user = rows1[0];
+                  console.log(user);
                   return done(null, user);
                 })
                 .catch(err => {
