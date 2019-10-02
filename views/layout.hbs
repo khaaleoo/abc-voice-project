@@ -29,68 +29,7 @@
   <link rel="stylesheet" href="css/khaleo.css">
 
   <style>
-    .banner_part .banner_text .banner_text_iner {
-      padding-top: 150px;
-      vertical-align: unset;
-    }
-
-    .signupform {
-      margin-top: 160px;
-      width: 40px;
-    }
-
-    .single-input {
-
-      margin: 0 auto;
-      margin-bottom: 10px;
-      width: 80%;
-      border-radius: 20px;
-      border-style: none;
-    }
-
-    .signupBtn {
-      display: block;
-      margin: 0 auto;
-      border-radius: 20px;
-      text-align: center;
-      width: 40%;
-      height: 50px;
-      padding: 5px;
-
-    }
-
-    .banner_part {
-      height: 810px;
-    }
-
-    .landing {
-      background-color: whitesmoke;
-      padding: 10px;
-      border-radius: 20px;
-      width: 40%;
-
-    }
-
-    .inputform {
-      border: 1px solid whitesmoke;
-      padding: 20px;
-      border-radius: 20px;
-
-
-    }
-
-    .logo {
-      width: 150px;
-      padding: 5px;
-      margin: 0 auto;
-    }
-
-    @media (max-width: 576px) {
-      .logo {
-        max-width: 100px;
-        padding: 2px;
-      }
-    }
+    
   </style>
 </head>
 
@@ -101,7 +40,7 @@
       <div class="row align-items-center">
         <div class="col-lg-12">
           <nav class="navbar navbar-expand-lg navbar-light">
-            <img class="logo" src="img/logo.png" alt="logo">
+            <a href="/"><img class="logo" src="img/logo.png" alt="logo"></a>
             <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
               <ul class="navbar-nav">
                 <li class="nav-item">
@@ -168,9 +107,9 @@
   </header>
   <!-- Header part end-->
 
-  <section class="banner_part">
+  {{!-- <section class="banner_part"> --}}
     {{{body}}}
-  </section>
+  {{!-- </section> --}}
 
   <!--::footer_part start::-->
   <footer class="footer_part">

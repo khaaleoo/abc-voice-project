@@ -1,14 +1,74 @@
-.group-social-button{
-    width: 100%;
-    display: inline-flex;
-    margin: 10px;
+.group-social-button {
+  width: 100%;
+  display: inline-flex;
+  margin: 10px;
 }
 
-.main_menu .main-menu-item.main-menu-item-user ul li .nav-link{
-    text-transform: none !important;
+.main_menu .main-menu-item.main-menu-item-user ul li .nav-link {
+  text-transform: none !important;
 }
 
-.main-menu-item.main-menu-item-user .dropdown-menu{
-    right: 0 !important;
-    left: unset !important;
+.main-menu-item.main-menu-item-user .dropdown-menu {
+  right: 0 !important;
+  left: unset !important;
+}
+
+.banner_part .banner_text .banner_text_iner {
+  padding-top: 150px;
+  vertical-align: unset;
+}
+
+.signupform {
+  margin-top: 160px;
+  width: 40px;
+}
+
+.banner_part.login-section  .single-input,
+.banner_part.register-section  .single-input {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  width: 80%;
+  border-radius: 20px;
+  border-style: none;
+}
+
+.signupBtn {
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+  text-align: center;
+  width: 40%;
+  height: 50px;
+  padding: 5px;
+}
+
+.banner_part.login-section,
+.banner_part.register-section {
+  height: 810px;
+}
+
+.banner_part.login-section .landing, .banner_part.register-section .landing {
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 20px;
+  width: 40%;
+}
+
+.banner_part.login-section .inputform, .banner_part.register-section .inputform {
+  border: 1px solid whitesmoke;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.logo {
+  width: 150px;
+  padding: 5px;
+  margin: 0 auto;
+}
+
+@media (max-width: 576px) {
+  .logo {
+    max-width: 100px;
+    padding: 2px;
+  }
 }
