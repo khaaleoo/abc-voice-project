@@ -15,12 +15,13 @@
                 <div class="banner_img d-none d-lg-block">
                     <form class="inputform" action="/login" method="POST">
                         <div class="mt-10">
-                            <input type="text" name="email" placeholder="Your email" onfocus="this.placeholder"
+                            <input type="email" name="email" placeholder="Your email" onfocus="this.placeholder"
                                 onblur="this.placeholder" required class="single-input">
                         </div>
                         <div class="mt-10">
                             <input type="password" name="password" placeholder="Password"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
+                                minlength="6"
                                 class="single-input">
                         </div>
                         <button type="submit" class="btn_2 banner_btn_2 signupBtn" placeholder="Sign in"

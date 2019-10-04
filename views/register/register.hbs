@@ -16,21 +16,23 @@
                 <div class="banner_img d-none d-lg-block">
                     <form class="inputform" method="POST" action="/register">
                         <div class="mt-10">
-                            <input type="text" placeholder="Your email" name="email" onfocus="this.placeholder = ''"
+                            <input type="email" placeholder="Your email" name="email" onfocus="this.placeholder = ''"
                                 onblur="this.placeholder = 'Your email'" required class="single-input">
                         </div>
                         <div class="mt-10">
-                            <input type="password" name="password" placeholder="Password"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
+                            <input type="password" name="password" id="password" placeholder="Password"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required minlength="6"
                                 class="single-input">
                         </div>
                         <div class="mt-10">
-                            <input type="password" name="password_repeat" placeholder="Confirm Password'"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" required
-                                class="single-input">
+                            <input type="password" name="confirm_password" id="confirm_password"
+                                placeholder="Confirm Password'" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Confirm Password'"
+                                onkeyup="checkPass()" required class="single-input">
                         </div>
-                        <button class="btn_2 banner_btn_2 signupBtn" type="submit" placeholder="Sign up"
-                            value="Sign up">Sign
+                        <button class="btn_2 banner_btn_2 signupBtn" type="submit" placeholder="Sign up" value="Sign up"
+                            id="submitButton"
+                            >Sign
                             up</button>
 
                         <div class="mt-30">
@@ -55,3 +57,15 @@
     </div>
 </section>
 <!-- banner part end-->
+<script type="text/javascript">
+    function checkPass() {
+        var pass1 = document.getElementById('password');
+        var pass2 = document.getElementById('confirm_password');
+        if (pass1.value != pass2.value){
+            pass2.setCustomValidity("Confirm password did't match.");
+        }
+        else{
+            pass2.setCustomValidity("");
+        }
+    }
+</script>
