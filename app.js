@@ -8,8 +8,11 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var loginRouter = require("./routes/login");
 var registerRouter = require("./routes/register");
+var transcribeRouter = require("./routes/transcribe");
 var app = express();
 
+
+//
 require("./middleware/session")(app);
 require("./middleware/passport")(app);
 
@@ -30,7 +33,7 @@ app.use("/login", loginRouter);
 app.use("/logout", require("./routes/logout"));
 app.use("/register", registerRouter);
 app.use("/dadangnhap", indexRouter);
-
+app.use("/transcribe",transcribeRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
