@@ -1,11 +1,7 @@
 var request = require("request");
-var formData = require("form-data");
-const utf8 = require("utf8");
-var fs = require("fs");
-var fetch = require("node-fetch");
-var prettyjson = require("prettyjson");
 exports.uploadSingleFile = async (req, res, next) => {
   let wdRes = res;
+  let wdReq = req;
   const url = "https://server-sound-api.herokuapp.com";
   let jsonData = "";
   const file = req.file;
@@ -29,8 +25,8 @@ exports.uploadSingleFile = async (req, res, next) => {
   //     console.log("queo");
   //   }
   // );
-  const form = new formData();
-  var data = {
+  // const form = new formData();
+  var formData = {
     // Pass a simple key-value pair
     // my_field: "my_value",
     // // Pass data via Buffers
@@ -51,30 +47,32 @@ exports.uploadSingleFile = async (req, res, next) => {
     }
   };
   //form.append(data);
-  request.post({ url: url, formData: data }, async (err, res, body) => {
+  request.post({ url: url, formData: formData }, async (err, res, body) => {
     if (err) {
       return console.error("upload failed:", err);
     } else {
-      jsonData = body;
+      jsonData = body.toString();
       jsonData = jsonData.split('"text":"').pop();
       jsonData = jsonData.split('"}');
       let data = escape(jsonData[0]);
       //let t = utf8.encode(jsonData[0]);
       console.log("Upload successful!  Server responded with:", body);
-      var str = jsonData[0].toString();
+      var str =
+        "qua sinh bu\u1ed5i kh\u1ed5 t\u1ee9c h\u1ed3 \u0111\u1ee7 v\u1ec1\n";
+      //str += unescape(escape(jsonData[0]));
       //var str_esc = escape(str);
       // document.write(str_esc + "<br>");
       // document.write(unescape(str_esc));
-      console.log("str", str);
-      console.log("json", jsonData[0].toString());
-
-      wdRes.render("transcribe/transcribe", {
-        title: "Phiên dịch",
-        jsonData: unescape(data)
-      });
+      console.log("str", str.toString());
+      console.log("json", jsonData[0]);
+      console.log("compare", str.toString() == jsonData[0]);
       //wdRes.send(jsonData[0].toString("utf8"));
       //wdRes.send(jsonData)
-      //wdRes.redirect("/transcribe");
+      
+      wdReq.session.file = file;
+      wdReq.session.jsonData = jsonData[0];
+      wdRes.redirect("/transcribe");
+      wdReq.session.file = null;
     }
   });
   // console.log("code", jsonData.returncode);
@@ -88,7 +86,13 @@ exports.uploadSingleFile = async (req, res, next) => {
   // });
 };
 exports.index = async (req, res, next) => {
+  let jsonData = '';
+  if(req.session.file)
+  {
+    jsonData = req.session.jsonData;
+  }
   res.render("transcribe/transcribe", {
-    title: "Phiên dịch"
+    title: "Phiên dịch",
+    jsonData: jsonData
   });
 };
