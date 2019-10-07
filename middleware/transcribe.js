@@ -51,28 +51,27 @@ exports.uploadSingleFile = async (req, res, next) => {
     if (err) {
       return console.error("upload failed:", err);
     } else {
-      jsonData = body.toString();
-      jsonData = jsonData.split('"text":"').pop();
-      jsonData = jsonData.split('"}');
-      let data = escape(jsonData[0]);
+     // window.unescape = window.unescape || window.decodeURI;
+      jsonData = JSON.parse(body); //body la api json
+      // jsonData = jsonData.split('"text":"').pop();
+      // jsonData = jsonData.split('"}');
+      // let data = JSON.parse(body);
       //let t = utf8.encode(jsonData[0]);
-      console.log("Upload successful!  Server responded with:", body);
-      var str =
-        "qua sinh bu\u1ed5i kh\u1ed5 t\u1ee9c h\u1ed3 \u0111\u1ee7 v\u1ec1\n";
+      console.log("Upload successful!  Server responded with:", jsonData);
+      //var str = "qua sinh bu\u1ed5i kh\u1ed5 t\u1ee9c h\u1ed3 \u0111\u1ee7 v\u1ec1\n";
       //str += unescape(escape(jsonData[0]));
       //var str_esc = escape(str);
       // document.write(str_esc + "<br>");
       // document.write(unescape(str_esc));
-      console.log("str", str.toString());
-      console.log("json", jsonData[0]);
-      console.log("compare", str.toString() == jsonData[0]);
+      // console.log("str", str.toString());
+      // console.log("json", data["text"]);
+      // console.log("compare", str.toString() == jsonData[0]);
       //wdRes.send(jsonData[0].toString("utf8"));
       //wdRes.send(jsonData)
       
       wdReq.session.file = file;
-      wdReq.session.jsonData = jsonData[0];
+      wdReq.session.jsonData =  jsonData["text"];
       wdRes.redirect("/transcribe");
-      wdReq.session.file = null;
     }
   });
   // console.log("code", jsonData.returncode);
@@ -87,12 +86,15 @@ exports.uploadSingleFile = async (req, res, next) => {
 };
 exports.index = async (req, res, next) => {
   let jsonData = '';
+  let descriptionFile = ''
   if(req.session.file)
   {
     jsonData = req.session.jsonData;
+    descriptionFile = req.session.file.originalname;
   }
   res.render("transcribe/transcribe", {
     title: "Phiên dịch",
-    jsonData: jsonData
+    jsonData: jsonData,
+    descriptionFile: descriptionFile
   });
 };

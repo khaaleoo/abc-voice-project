@@ -19,17 +19,23 @@
                 </div>
                 <div class="col-lg-5">
                     <form action="/transcribe/uploadFile" enctype="multipart/form-data" method="POST">
-                        <div class="txt-sm">Audio file <span id="cv-file-name"></span> <span>Supported format:
-                                WAV</span></div>
-                        <input class="btn_2 banner_btn_1" type="file" id="myFile" name="myFile" accept="audio/wav" class="btn_2 banner_btn_1"/> <br>
+
+
+
+                        <label class="custom-file-upload">
+                            <div class="txt-sm">Audio file <span id="cv-file-name"></span> <span>Supported format:
+                                    WAV</span></div>
+                            <input class="btn_2 banner_btn_2" type="file" id="myFile" name="myFile" accept="audio/wav">
+                            
+                        </label>
                         <div>
-                            <input type="submit" class="btn_2 banner_btn_1"/><br>
+                            <input type="submit" class="btn_2 banner_btn_1" /><br>
                         </div>
                     </form>
                     <div class="form-group">
-            
+                        <h3>{{descriptionFile}}</h3>
                         <textarea class="form-control rounded-0" id="exampleFormControlTextarea1"
-                            rows="10">{{jsonData}}</textarea>
+                            rows="10" value={{jsonData}}>{{jsonData}}</textarea>
                     </div>
                 </div>
 

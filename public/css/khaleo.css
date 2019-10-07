@@ -84,3 +84,23 @@
     text-align: center;
     color: #8a8787b7;
 }
+.input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  display: inline-block;
+  padding: 18.5px 40px;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #1a1a1a;
+  transition: all .4s ease-in-out;
+  text-transform: capitalize;
+  border: 1px solid #8f9091;
+  background-size: 200% auto;
+  color: #fff;
+    border: 1px solid #fff;
+    background-color: transparent;
+}
