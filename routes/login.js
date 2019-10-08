@@ -22,7 +22,7 @@ router.post("/", (req, res, next) => {
     }
     req.logIn(user, err => {
       if (err) return next(err);
-      res.redirect("/dadangnhap");
+      res.redirect("/");
     });
   })(req, res, next);
 });
@@ -34,7 +34,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   function(req, res) {
-    res.redirect("/dangnhap");
+    res.redirect("/");
   }
 );
 
@@ -42,7 +42,7 @@ router.get("/auth/facebook", passport.authenticate("facebook"));
 router.get(
   "/auth/facebook/callback",
   passport.authenticate("facebook", {
-    successRedirect: "/dadangnhap",
+    successRedirect: "/",
     failureRedirect: "/login"
   })
 );

@@ -11,6 +11,7 @@ const createEntity = (profile, username) => {
   entity.email = username;
   entity.password = 0;
   entity.role = "";
+  entity.name= profile.displayName;
   return entity;
 };
 var localStrategy = new LocalStrategy(
@@ -49,6 +50,7 @@ const googleStrategy = new GoogleStrategy(
   },
   function(accessToken, refreshToken, profile, done) {
     var username = "gg-" + profile.id;
+
     userModel
       .findByEmail(username)
       .then(rows => {
