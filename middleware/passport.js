@@ -10,7 +10,7 @@ const createEntity = (profile, username) => {
   var entity = new Object();
   entity.email = username;
   entity.password = 0;
-  entity.role = "";
+  entity.role = "user";
   entity.name= profile.displayName;
   return entity;
 };
