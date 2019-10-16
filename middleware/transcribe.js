@@ -27,7 +27,7 @@ exports.uploadSingleFile = async (req, res, next) => {
     } else {
       jsonData = JSON.parse(body); 
       console.log("Upload successful!  Server responded with:", jsonData);
-      wdReq.session.file = file;
+      wdReq.session.filename = file.originalname;
       wdReq.session.jsonData =  jsonData["text"];
       wdRes.redirect("/transcribe");
     }
@@ -36,10 +36,10 @@ exports.uploadSingleFile = async (req, res, next) => {
 exports.index = async (req, res, next) => {
   let jsonData = '';
   let descriptionFile = ''
-  if(req.session.file)
+  if(req.session.filename)
   {
     jsonData = req.session.jsonData;
-    descriptionFile = req.session.file.originalname;
+    descriptionFile = req.session.filename;
   }
   res.render("transcribe/transcribe", {
     title: "Phiên dịch",
