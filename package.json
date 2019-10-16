@@ -16,7 +16,6 @@
     "express-handlebars": "^3.1.0",
     "express-handlebars-sections": "^1.0.1",
     "express-session": "^1.16.2",
-    "form-data": "^2.5.1",
     "fs": "0.0.1-security",
     "hat": "0.0.3",
     "hbs": "~4.0.4",
