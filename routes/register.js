@@ -8,23 +8,36 @@ router.get("/", function(req, res, next) {
 });
 
 router.post("/", async (req, res, next) => {
-  if (req.body.password !== req.body.password_repeat) {
-    res.render("error");
-  } else {
-    const email = await userModel.findByEmail(req.body.email);
-    if (email.length > 1) {
-      res.render("error");
+  if (req.body) {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      res.send("/thieuparam");
+      return;
+    }
+    const email_user = await userModel.findByEmail(email);
+    console.log(email_user);
+    if (email_user.length > 0) {
+      res.send("/usernamedatontai");
     } else {
       const data = {
-        email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 10),
-        role: "user"
+        email,
+        password: bcrypt.hashSync(password, 10),
+        role: "user",
+        name: "NoName"
       };
-      const useradd = await userModel.add(data);
-      if (useradd) {
-        res.render("index", { title: "Express" });
+      try {
+        const useradd = await userModel.add(data);
+        if (useradd) {
+          res.redirect("/");
+        } else {
+          res.send("/thatbai");
+        }
+      } catch (e) {
+        next(e);
       }
     }
+  } else {
+    res.send("/thieuparam");
   }
 });
 module.exports = router;
