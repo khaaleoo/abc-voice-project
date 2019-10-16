@@ -1,3 +1,4 @@
+{{>header user=this.user}}
 <!-- banner part start-->
 {{>header user=this.user}}
 <section class="banner_part register-section">
@@ -26,18 +27,22 @@
                         <label class="custom-file-upload">
                             <div class="txt-sm">Audio file <span id="cv-file-name"></span> <span>Supported format:
                                     WAV</span></div>
-                            <input class="btn_2 banner_btn_2" type="file" id="myFile" name="myFile" accept="audio/wav">
+                            <input class="btn_2 banner_btn_2" type="file" id="myFile" name="myFile" accept="audio/wav" required>
                             <hr>
-                            <input type="text" name="apiKey" style="width: 100%" placeholder="Please input your API KEY" />
+                            <input type="text" name="apiKey" style="width: 100%" placeholder="Please input your API KEY" required />
                         </label>
                         <div>
-                            <input type="submit" class="btn_2 banner_btn_1" /><br>
+                            <input type="submit" class="btn_2 banner_btn_1" value="convert" /><br>
                         </div>
                     </form>
                     <div class="form-group">
                         <h3>{{descriptionFile}}</h3>
-                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea1"
-                            rows="10" value={{jsonData}}>{{jsonData}}</textarea>
+                        <textarea readonly="true" class="form-control rounded-0" id="Textarea" rows="10"
+                            value={{jsonData}}>{{jsonData}}</textarea>
+                    </div>
+                    <div>
+                        <input id="download" type="button" class="btn_2 banner_btn_1" onclick="clickHandler()"
+                            value="Download" /><br>
                     </div>
                 </div>
 
@@ -53,4 +58,43 @@
     </div>
 
 </section>
+
+<script>
+
+
+    function clickHandler() {
+        var textFile = null,
+            makeTextFile = function (text) {
+                var data = new Blob([text], { type: 'application/msword' });
+
+                // If we are replacing a previously generated file we need to
+                // manually revoke the object URL to avoid memory leaks.
+                if (textFile !== null) {
+                    window.URL.revokeObjectURL(textFile);
+                }
+
+                textFile = window.URL.createObjectURL(data);
+
+                return textFile;
+            };
+
+
+
+        let textbox = document.getElementById('Textarea');
+        var link = document.createElement('a');
+        link.setAttribute('download', 'output');
+        link.href = makeTextFile(textbox.value);
+        document.body.appendChild(link);
+
+        // wait for the link to be added to the document
+        window.requestAnimationFrame(function () {
+            var event = new MouseEvent('click');
+            link.dispatchEvent(event);
+            document.body.removeChild(link);
+        });
+    }
+</script>
+
+//
+
 <!-- banner part end-->
