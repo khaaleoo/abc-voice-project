@@ -1,3 +1,4 @@
+{{>header user=this.user}}
 <!-- banner part start-->
 <section class="banner_part register-section">
     <link rel="stylesheet" href="css/khaleo.css">
@@ -24,8 +25,8 @@
 
                         <label class="custom-file-upload">
                             <div class="txt-sm">Audio file <span id="cv-file-name"></span> <span>Supported format:
-                                    WAV</span></div>
-                            <input class="btn_2 banner_btn_2" type="file" id="myFile" name="myFile" accept="audio/wav">
+                                    .WAV</span></div>
+                            <input class="btn_2 banner_btn_2" type="file" id="myFile" name="myFile" accept="audio/wav" required>
                             
                         </label>
                         <div>
@@ -52,3 +53,4 @@
 
 </section>
 <!-- banner part end-->
+{{>footer}}
