@@ -6,17 +6,6 @@ exports.uploadSingleFile = async (req, res, next) => {
   const url = "https://server-sound-api.herokuapp.com";
   let jsonData = "";
   const file = req.file;
-  console.log('req.body0--------', req.body);
-  const apiKey = req.body.apiKey;
-  const rows = await keyModel.singleById(apiKey);
-  console.log('rrowsss---', rows);
-  console.log('reow.length------', rows.length);
-  if (rows.length === 0) {
-    console.log('hahahahahha');
-    const error = new Error("API KEY invalid");
-    error.httpStatusCode = 400;
-    return next(error);
-  }
   if (!file) {
     const error = new Error("Please upload a file");
     error.httpStatusCode = 400;
