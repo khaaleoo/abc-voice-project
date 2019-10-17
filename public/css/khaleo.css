@@ -75,8 +75,12 @@
 }
 
 .signUp-direct{
-    margin-top: 50px;
+    margin-top: 20px;
     text-align: center
+}
+
+.mt-10{
+  text-align: center;
 }
 
 .mt-30{
@@ -103,4 +107,52 @@
   color: #fff;
     border: 1px solid #fff;
     background-color: transparent;
+}
+
+/* forgot password page */
+.img-lock{
+  content:url("../img/lock-forgotpassword.png");
+  height: 30%;
+  width: 30%;
+}
+
+.banner_img.d-none.d-lg-block{
+  text-align: center;
+  padding: 10px;
+}
+
+.banner_img.d-none.d-lg-block.forgotPasswordArea{
+  border: 1px solid whitesmoke;
+  border-radius: 20px;
+}
+
+.forgotPasswordArea>.inputform{
+  border: 0px !important;
+  padding: 10px !important;
+}
+
+.backBtn{
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+  text-align: center;
+  width: 40%;
+  height: 50px;
+  padding: 0.001px;
+}
+
+button.btn_2.banner_btn_2.backBtn > a{
+  display: table; 
+  width:100%; 
+  height: 100%;
+  border-radius: 20px;
+}
+
+button.btn_2.banner_btn_2.backBtn > a > span{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.forgotPasswordArea .group-social-button {
+  margin-top: 20px !important;
 }

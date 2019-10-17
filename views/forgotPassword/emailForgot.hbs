@@ -1,0 +1,46 @@
+{{>header user=this.user}}
+<!-- banner part start-->
+{{>header user=this.user}}
+<script>
+    let info = "{{ this.info.message }}"
+    if (info) alert(info)
+</script>
+<section class="banner_part login-section">
+    <link rel="stylesheet" href="css/khaleo.css">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="banner_text">
+                    <div class="banner_text_iner">
+                        <h1>It's so easy to convert your voice to document</h1>
+                        <img class="landing" src="img/about_img.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 signupform">
+                <div class="banner_img d-none d-lg-block forgotPasswordArea">
+                    <img class="img-lock" alt="">
+                    <h3>Forgot Password?</h3>
+                    <h6>You can reset password here</h6>
+                    <form class="inputform" action="/login" method="POST">
+                        <div class="mt-10">
+                            <input type="email" name="email" placeholder="Input your email" onfocus="this.placeholder"
+                                onblur="this.placeholder" required class="single-input">
+                        </div>
+                        <div class="group-social-button">
+                            <button type="button" class="btn_2 banner_btn_2 backBtn">
+                                <a href="/login" style=""><span>Back</span></a>
+                            </button>
+                            <button type="submit" class="btn_2 banner_btn_2 signupBtn"
+                            value="Send Link">Send Link</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- banner part start-->
+{{>footer}}
