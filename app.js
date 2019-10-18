@@ -7,7 +7,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var loginRouter = require("./routes/login");
-var emailForgot = require("./routes/emailForgot")
+var passwordForgot = require("./routes/passwordForgot")
 var registerRouter = require("./routes/register");
 var transcribeRouter = require("./routes/transcribe");
 var getAudioApiRouter = require('./routes/api/jsonAudio');
@@ -45,7 +45,7 @@ app.use(require("./routes/genarateKey"))
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/login", loginRouter);
-app.use("/emailForgot", emailForgot);
+app.use("/passwordForgot", passwordForgot);
 app.use("/logout", require("./routes/logout"));
 app.use("/register", registerRouter);
 app.use("/dadangnhap", indexRouter);
