@@ -7,7 +7,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var loginRouter = require("./routes/login");
-var recoveryPassword = require("./routes/recoveryPassword")
+var recoverPassword = require("./routes/recoverPassword")
 var registerRouter = require("./routes/register");
 var transcribeRouter = require("./routes/transcribe");
 var getAudioApiRouter = require('./routes/api/jsonAudio');
@@ -62,6 +62,7 @@ app.use("/getkey", getAudioApiRouter);
 app.use("/verify",verifyEmail);
 app.use("/apidoc", apiDocument);
 app.use("/price", price);
+app.use("/recoverPassword",recoverPassword)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
