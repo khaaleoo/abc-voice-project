@@ -7,17 +7,18 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var loginRouter = require("./routes/login");
-var emailForgot = require("./routes/emailForgot")
+var recoveryPassword = require("./routes/recoveryPassword")
 var registerRouter = require("./routes/register");
 var transcribeRouter = require("./routes/transcribe");
 var getAudioApiRouter = require('./routes/api/jsonAudio');
+var verifyEmail = require('./routes/verifyEmail');
 var app = express();
 
 
 //
 require("./middleware/session")(app);
 require("./middleware/passport")(app);
-
+require('dotenv').config();
 
 
 var hbs = require( 'express-handlebars' );
@@ -45,12 +46,13 @@ app.use(require("./routes/genarateKey"))
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/login", loginRouter);
-app.use("/emailForgot", emailForgot);
+app.use("/recoveryPassword", recoveryPassword);
 app.use("/logout", require("./routes/logout"));
 app.use("/register", registerRouter);
 app.use("/dadangnhap", indexRouter);
 app.use("/transcribe",transcribeRouter);
 app.use("/getkey", getAudioApiRouter);
+app.use("/verify",verifyEmail);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

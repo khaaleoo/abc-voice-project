@@ -17,5 +17,8 @@ module.exports = {
   },
   findByEmail: email => {
     return db.load(`select * from user where email='${email}'`);
+  },
+  verifyEmail: token => {
+    //tìm record chứa token sau đó update cột token => null và cột isActivated => true, nếu k tìm thấy return null
   }
 };
