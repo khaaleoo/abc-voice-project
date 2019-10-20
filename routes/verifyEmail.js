@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
       console.log("email is not verified");
     }
   
-    res.render("account/verifyEmail", {
+    res.render("login/verifyEmail", {
       title: "Kích hoạt email",
       message: message
     });

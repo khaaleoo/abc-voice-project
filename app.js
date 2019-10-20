@@ -12,25 +12,32 @@ var registerRouter = require("./routes/register");
 var transcribeRouter = require("./routes/transcribe");
 var getAudioApiRouter = require('./routes/api/jsonAudio');
 var verifyEmail = require('./routes/verifyEmail');
+var passwordForgot = require("./routes/passwordForgot");
+var registerRouter = require("./routes/register");
+var transcribeRouter = require("./routes/transcribe");
+var getAudioApiRouter = require("./routes/api/jsonAudio");
+var apiDocument = require("./routes/apidocument");
+var price = require("./routes/price");
 var app = express();
-
 
 //
 require("./middleware/session")(app);
 require("./middleware/passport")(app);
 require('dotenv').config();
 
+var hbs = require("express-handlebars");
 
-var hbs = require( 'express-handlebars' );
+app.engine(
+  "hbs",
+  hbs({
+    extname: "hbs",
+    defaultLayout: "layout",
+    layoutsDir: __dirname + "/views/",
+    partialsDir: __dirname + "/views/partials/"
+  })
+);
 
-app.engine( 'hbs', hbs( { 
-  extname: 'hbs', 
-  defaultLayout: 'layout', 
-  layoutsDir: __dirname + '/views/',
-  partialsDir: __dirname + '/views/partials/'
-} ) );
-
-app.set( 'view engine', 'hbs' );
+app.set("view engine", "hbs");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -41,18 +48,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(require("./routes/genarateKey"))
+app.use(require("./routes/genarateKey"));
 //routes
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/login", loginRouter);
-app.use("/recoveryPassword", recoveryPassword);
+app.use("/forgotPassword", passwordForgot);
 app.use("/logout", require("./routes/logout"));
 app.use("/register", registerRouter);
 app.use("/dadangnhap", indexRouter);
-app.use("/transcribe",transcribeRouter);
+app.use("/transcribe", transcribeRouter);
 app.use("/getkey", getAudioApiRouter);
 app.use("/verify",verifyEmail);
+app.use("/apidoc", apiDocument);
+app.use("/price", price);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
