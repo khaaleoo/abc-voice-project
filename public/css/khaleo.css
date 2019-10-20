@@ -156,3 +156,19 @@ button.btn_2.banner_btn_2.backBtn > a > span{
 .forgotPasswordArea .group-social-button {
   margin-top: 20px !important;
 }
+
+/* verified password page */
+.img-verified{
+  content:url("../img/verified_icon.png");
+  height: 30%;
+  width: 30%;
+}
+
+/* change new password page */
+.img-smile{
+  content:url("../img/smile_icon.png");
+  height: 30%;
+  width: 30%;
+}
+
+
