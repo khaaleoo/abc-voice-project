@@ -24,7 +24,5 @@ module.exports = {
   verifyRecoverToken: token =>
     db.load(`select * from user where token='${token}'`),
   addRecoverToken: entity => db.update("user", "email", entity),
-  changePassword: (email, info) => {
-    //tìm record với email tương ứng, sau đó sửa info cần thiết
-  }
+  changePassword: (email, info) => db.load(`UPDATE user SET password=${info} WHERE email=${email}`)
 };
