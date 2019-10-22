@@ -23,7 +23,7 @@ router.post("/", async (req, res, next) => {
   console.log("abc",req.body);
   if(req.body&&req.body.email&&req.body.password){
     const password=bcrypt.hashSync(req.body.password,10)
-    await userModel.changePassword(req.body.email, password);
+    await userModel.changePassword(req.body.email, password).catch(e=>{console.log(e)})
     res.redirect("./login");
   }else{
     res.send("loi form");
