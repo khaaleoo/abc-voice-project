@@ -22,7 +22,8 @@ router.get("/nortificationRequest", function(req, res, next) {
 router.get("/newPassword", function(req, res, next) {
   res.render("passwordforgot/newPassword", {
     title: "New Password",
-    layout: "../views/layout"
+    layout: "../views/layout",
+    email: req.user.email
   });
 });
 const smtpTransport = nodemailer.createTransport({
@@ -63,13 +64,16 @@ router.post("/", async (req, res, next) => {
   const user = await userModel.findByEmail(email);
   console.log("user------",user);
   console.log("email----",email)
-  if (user.length>0) {
+  if (!user.error) {
     notify = "HÃY CHECK EMAIL CỦA BẠN !!!";
     message =
       "Chúng tôi đã gửi thư đến email của bạn, hãy làm theo hướng dẫn trong thư để lấy lại mật khẩu nhé ^^!";
     token = await sendmailRecover(req, res, email);
-    await userModel.addRecoverToken(email, token);
-    res.redirect("forgotPassword/nortificationRequest");
+    const entity=user.data;
+    entity.token=token;
+    userModel.addRecoverToken(entity)
+    .then(r=>res.redirect("forgotPassword/nortificationRequest"))
+    .catch(e=>next(e))
   }
   else {
     res.send(message);
