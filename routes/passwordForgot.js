@@ -57,19 +57,24 @@ const sendmailRecover = async (req, res,email) => {
 };
 router.post("/", async (req, res, next) => {
   const email = req.body.email;
-  var token = "";
-  var notify = "CHÚNG TÔI RẤT TIẾC !!!";
-  var message =
-    "Có vẻ như tài khoản của bạn không tồn tại, hoặc chưa được kíck hoạt với bất cứ email nào :( !!!";
-  const user = await userModel.findByEmail(email);
+  let token = "";
+  let notify = "CHÚNG TÔI RẤT TIẾC !!!";
+  let message ="Có vẻ như tài khoản của bạn không tồn tại, hoặc chưa được kíck hoạt với bất cứ email nào :( !!!";
+  let user=null;
+  try{ 
+    user = await userModel.findByEmail(email);
+  }
+  catch(e){ 
+    next(e)
+  };
   console.log("user------",user);
   console.log("email----",email)
-  if (!user.error) {
+  if (user.length>0) {
     notify = "HÃY CHECK EMAIL CỦA BẠN !!!";
     message =
       "Chúng tôi đã gửi thư đến email của bạn, hãy làm theo hướng dẫn trong thư để lấy lại mật khẩu nhé ^^!";
     token = await sendmailRecover(req, res, email);
-    const entity=user.data;
+    const entity=user[0];
     entity.token=token;
     userModel.addRecoverToken(entity)
     .then(r=>res.redirect("forgotPassword/nortificationRequest"))
