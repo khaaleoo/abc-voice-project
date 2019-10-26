@@ -19,7 +19,7 @@ var localStrategy = new LocalStrategy(
     usernameField: "email",
     passwordField: "password"
   },
-  (username, password, done) => {
+  async (username, password, done) => {
     userModel
       .findByEmail(username)
       .then(rows => {

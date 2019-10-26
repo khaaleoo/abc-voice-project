@@ -3,8 +3,8 @@ var router = express.Router();
 var userModel = require("../model/user.model");
 var bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
-const user = "edogawaconanhuyx98@gmail.com"
-const password = "Cotroimoibiet12";
+const user = "soundapihcmus@gmail.com"
+const password = "Cotroimoibiet1";
 /* GET emailForgot page. */
 router.get("/", function(req, res, next) {
   res.render("passwordforgot/passwordForgot", { title: "Email Forgot" });

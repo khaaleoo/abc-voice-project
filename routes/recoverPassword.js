@@ -8,6 +8,7 @@ router.get("/", async (req, res, next) => {
     console.log("enter recoverpassword zone");
     message = "";
     const email = user.email;
+    res.redirect("passwordforgot/newPassword")
     res.render("passwordforgot/newPassword", {
       title: "Khôi phục mật khẩu",
       message: message,
