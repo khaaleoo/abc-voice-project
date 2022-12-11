@@ -14,7 +14,7 @@
     "dateformat": "^3.0.3",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-handlebars": "^3.1.0",
     "express-handlebars-sections": "^1.0.1",
     "express-session": "^1.16.2",
